@@ -1,6 +1,5 @@
 package bernard.corejava;
 
-import com.bernard.java8.practices.FunctionalInterfaceTest1;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
