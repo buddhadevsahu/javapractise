@@ -137,7 +137,8 @@ public class MyStreamTest {
     }
 
     static class A<R>{
-        List<R> list = new ArrayList<>();
+        //List<R> list = new ArrayList<>();
+        List<R> list = new LinkedList<>();
 
         void add(R r){
             list.add(r);
