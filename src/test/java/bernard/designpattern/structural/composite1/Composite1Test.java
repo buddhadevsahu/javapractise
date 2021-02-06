@@ -1,7 +1,6 @@
 package bernard.designpattern.structural.composite1;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class Composite1Test {
 
@@ -11,13 +10,16 @@ public class Composite1Test {
         MyPage p1=new MyPage("Buddha");
         p1.addContent("ABCD");
         d1.add(p1);
-        Assertions.assertEquals(4,d1.size());
+        assertEquals(4,d1.size());
 
         Directory d2 = new Directory("TECH-HAWK");
         MyPage p2=new MyPage("SOMNATH");
         p2.addContent("XYZ");
         d2.add(p2);
         d1.add(d2);
-        Assertions.assertEquals(7,d1.size());
+        assertEquals(7,d1.size());
+    }
+
+    private void assertEquals(int i, int size) {
     }
 }

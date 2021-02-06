@@ -1,6 +1,6 @@
 package bernard.java8.practices;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -66,9 +66,19 @@ public class MyStreamTest {
     @Test
     public void testFlatMap1(){
         List<Integer> list1 = Arrays.asList(1, 2, 3, 4, 5);
-        List<Integer> list2 = Arrays.asList(7, 8, 9);
+        List<Integer> list2 = Arrays.asList(22, 66, 45);
+       // List<Integer> list2 = Arrays.asList();
 
-        List<List<Integer>> re = list1.stream().flatMap(x -> {
+        long size = list2.stream().count();
+
+        System.out.println("size "+ size);
+        Integer sum = list2.stream().reduce((x, y) -> x + y).orElse(0);
+        double average = (double)(sum / size);
+
+        System.out.println("sum "+ sum);
+        System.out.println("average "+ average);
+
+/*        List<List<Integer>> re = list1.stream().flatMap(x -> {
             System.out.println("value : " + x);
 
             return list2.stream()
@@ -77,21 +87,31 @@ public class MyStreamTest {
                     .map(y -> Arrays.asList(x, y));
         }).collect(Collectors.toList());
 
-        System.out.println("result "+re);
+        System.out.println("result "+re);*/
     }
 
 
     //get distinct character from  given array of String
     @Test
     public void testStringArrayStream(){
+        List<String> list1 = Arrays.asList("1", "2", "3", "4", "5");
+        List<String> list2 = Arrays.asList("6", "7", "8", "9", "10");
+        List<List<String>>list3 =  new ArrayList<>();
+        list3.add(list1);
+        list3.add(list2);
 
-        String[] words= new String[]{"Goodbye", "World"};
-        List<String> res = Arrays.stream(words)
-                .flatMap(x -> Arrays.stream(x.split("")))
-                .distinct()
-                .collect(Collectors.toList());
-        System.out.println("result "+res);
+        List<String> list4 = list3.stream().flatMap(x -> x.stream()).collect(Collectors.toList());
+        System.out.println("result "+list4);
     }
+
+    @Test
+    public void testStringDoubleStream(){
+
+
+    }
+
+
+
 
     //get duplicate character from  given array of String
     @Test

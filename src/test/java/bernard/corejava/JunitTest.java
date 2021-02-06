@@ -1,11 +1,11 @@
 package bernard.corejava;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class JunitTest {
 
@@ -26,14 +26,14 @@ public class JunitTest {
     @Test
     public void  testList(){
         //Assertions.assertEquals(list1,list2);
-        Assertions.assertEquals(list1,list2," not working");
+        assertEquals(list1,list2);
 
     }
 
     @Test
     public void testWelcomeWhenStringInputNull(){
         try {
-            Assertions.assertEquals(null, welcome(null));
+            assertEquals(null, welcome(null));
         }catch (Exception e){
             System.out.println("vvvv"+e.getMessage());
         }

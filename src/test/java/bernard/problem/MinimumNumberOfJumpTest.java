@@ -1,7 +1,10 @@
 package bernard.problem;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class MinimumNumberOfJumpTest {
 
@@ -11,12 +14,12 @@ public class MinimumNumberOfJumpTest {
         //int[] array = new int[]{1,3,5,8,9,2,6,7,6,8,9};
         //int[] array = new int[]{3,5,8};//1
         int[] array = new int[]{2,5,8,4};//2
-        Assertions.assertEquals(3,getMinimumNoStepToReachLast(array));
+        assertEquals(3,getMinimumNoStepToReachLast(array));
     }
 
     private int getMinimumNoStepToReachLast(int[] input) {
-        Assertions.assertNotNull(input);
-        Assertions.assertTrue(input.length>0);
+        assertNotNull(input);
+        assertTrue(input.length>0);
         return findMinStep(0,input,1);
     }
 

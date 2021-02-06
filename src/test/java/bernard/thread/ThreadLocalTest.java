@@ -1,5 +1,8 @@
 package bernard.thread;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ThreadLocalTest {
 
 
@@ -10,7 +13,7 @@ public class ThreadLocalTest {
         Thread th3 = new Thread(new MyRunnable(300,"TH3"));
         Thread th4 = new Thread(new MyRunnable(400,"TH4"));
 
-        DBMSAccessHelper.setTenantId((long)1000);
+        //DBMSAccessHelper.setTenantId((long)1000);
         th1.start();
         th2.start();
         th3.start();
@@ -18,7 +21,7 @@ public class ThreadLocalTest {
 
         try {
 
-            System.out.println("main thread local : "+DBMSAccessHelper.getTenantId());
+            //System.out.println("main thread local : "+DBMSAccessHelper.getTenantId());
             th1.join();
             th2.join();
             th3.join();
@@ -38,22 +41,39 @@ public class ThreadLocalTest {
 
         private int offset;
         private String  name;
+        //private ThreadLocal<Integer> count;  //not getting initialised
+        static ThreadLocal<Integer> count=new ThreadLocal<>();  //not getting initialised
 
         public MyRunnable(int offset, String name) {
             this.offset = offset;
             this.name = name;
+
         }
+
+  /*      static {
+            //count=new ThreadLocal<>();
+            count.set(0);
+        }*/
 
         @Override
         public void run() {
 
-            for (int i =offset; i < offset+10 ; i++){
+            if(count.get()==null){
+                count.set(0);
+            }
 
-                System.out.println(" name : "+name+" ("+i+","+DBMSAccessHelper.getTenantId());
+            int limit = offset + 10;
 
-                if(i == (offset+5)){
+            List<Integer> list = new ArrayList<>();
+            list.clear();
+
+            while (offset++ <limit) {
+
+                System.out.println(" name : "+name+" ("+offset +","+count.get());
+                count.set(count.get() + 1);
+                /* if(i == (offset+5)){
                     DBMSAccessHelper.setTenantId((long)offset+5);
-                }
+                }*/
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -68,7 +88,7 @@ public class ThreadLocalTest {
 
 
 
-    static class DBMSAccessHelper{
+    /*static class DBMSAccessHelper{
 
         private int id;
         private static ThreadLocal<Long> tenantId = new ThreadLocal<>();
@@ -104,6 +124,6 @@ public class ThreadLocalTest {
         }
     }
 
-
+*/
 
 }

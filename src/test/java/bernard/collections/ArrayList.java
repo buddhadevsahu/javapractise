@@ -1,6 +1,6 @@
 package bernard.collections;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +18,8 @@ public class ArrayList {
 
         //increase capacity to 10 and added 1st element , size =1
         list.add("one");
+        list.size();
+        list.get(1);
 
         //when ( elementdata.length == size )
         // newcapacity = oldcapacity + (oldcapacity/2)
@@ -41,6 +43,8 @@ public class ArrayList {
         System.out.println("0>>1 : "+(20>>1));
         System.out.println("10>>1 : "+(4>>1));
         System.out.println("max length : "+(Integer.MAX_VALUE - 8));  //(2^31-1) - 8
+
+
     }
 
 
